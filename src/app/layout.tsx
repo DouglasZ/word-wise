@@ -3,6 +3,12 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import {ThemeProvider} from "@/components/theme-provider";
 import {Toaster} from "sonner";
+import {readFileSync} from "fs";
+import { join } from 'path';
+
+const packageJson = JSON.parse(
+    readFileSync(join(process.cwd(), 'package.json'), 'utf-8')
+);
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -24,6 +30,8 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+    const currentYear = new Date().getFullYear();
+
   return (
     <html lang="en" suppressHydrationWarning>
       <body
@@ -36,17 +44,25 @@ export default function RootLayout({
           disableTransitionOnChange
           storageKey="word-wise-app-theme"
       >
-        {children}
-        <Toaster
-            closeButton
-            richColors
-            position="bottom-center"
-            className="custom-taster"
-            expand={false}
-            toastOptions={{
-                duration: 5000,
-            }}
-       />
+          <div className="flex flex-col min-h-dvh">
+              <div className="flex-1 container mx-auto p-2">
+                {children}
+              </div>
+            <Toaster
+                closeButton
+                richColors
+                position="bottom-center"
+                className="custom-taster"
+                expand={false}
+                toastOptions={{
+                    duration: 5000,
+                }}
+           />
+              <footer className="h-[50px] border flex items-center justify-center text-sm text-gray-400 p-2 shadow-inner">
+                  <div className="flex-1 flex justify-center">&copy; {currentYear}</div>
+                  <span className="text-xs">v{packageJson.version}</span>
+              </footer>
+        </div>
       </ThemeProvider>
       </body>
     </html>

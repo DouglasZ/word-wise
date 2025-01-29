@@ -50,9 +50,7 @@ export default function Home() {
     }, 300);
 
     return (
-        <div className="container mx-auto p-2">
             <div className="flex flex-col">
-
 
                 <div className="flex gap-8">
                     <Input placeholder="Search" className="w-full" onChange={(e) => handleSearch(e.target.value)} autoFocus />
@@ -85,7 +83,7 @@ export default function Home() {
                         ))}
                     </ul>
                     {isLoading ? (
-                        <div className="h-full flex items-center justify-center">
+                        <div className="flex items-center justify-center">
                             <Loading size={40} />
                         </div>
                     ) : (
@@ -103,6 +101,5 @@ export default function Home() {
                     )}
                 </div>
             </div>
-        </div>
     );
 }
