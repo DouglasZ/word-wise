@@ -9,6 +9,7 @@ import {Input} from "@/components/ui/input";
 import {onSaveWord} from "@/lib/word-service";
 import {TextEditor} from "@/components/text-editor";
 import {FaArrowLeft, FaSave} from "react-icons/fa";
+import {TextTranslator} from "@/components/text-translator";
 
 
 const Register = () => {
@@ -52,8 +53,8 @@ const Register = () => {
   };
 
   return (
-    <div className="container mx-auto p-2">
-      <div className="mb-2 flex justify-between gap-1">
+    <div className="container mx-auto p-2 flex flex-col gap-2">
+      <div className="flex justify-between gap-1">
         <div>
           <Button variant={'outline'} asChild tabIndex={4}>
             <Link href={'/'}>
@@ -68,7 +69,6 @@ const Register = () => {
           </Button>
         </div>
       </div>
-      <div className="mb-2">
         <Input
           autoFocus
           type="text"
@@ -80,11 +80,12 @@ const Register = () => {
           tabIndex={1}
           onFocus={(e) => e.target.select()}
         />
-      </div>
         <TextEditor content={formContent.description as string} onChange={(content) => setFormContent({
             ...formContent,
             description: content,
         }) }/>
+
+        <TextTranslator />
     </div>
   );
 };

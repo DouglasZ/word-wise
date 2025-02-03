@@ -16,7 +16,7 @@ export const TextEditor = ({ content, onChange, ref}: TextEditorProps) => {
     const config = useMemo(
         () => ({
             readonly: false,
-            height: 500,
+            height: 300,
             placeholder: "Description something about the word...",
         }),
         []
